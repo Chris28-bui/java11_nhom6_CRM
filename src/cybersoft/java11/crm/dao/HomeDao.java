@@ -19,7 +19,7 @@ public class HomeDao {
 		Connection connection = MySqlConnection.getConnection();
 		if(connection == null)
 			return result;
-		String test = "select 1 from dual";
+			String test = "select 1 from dual";
 		try {
 			Statement statement = connection.createStatement();
 			result = statement.execute(test);
