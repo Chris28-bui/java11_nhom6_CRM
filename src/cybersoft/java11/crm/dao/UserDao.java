@@ -30,7 +30,8 @@ public class UserDao {
 				newUser.setFullname(results.getString("fullname"));
 				newUser.setAddress(results.getString("address"));
 				newUser.setPhone(results.getString("phone"));
-				newUser.setRole(results.getInt("role_id"));
+//				newUser.setRole(results.getObject("role_id"));
+				newUser.setRole(null);
 				
 				userList.add(newUser);
 			}

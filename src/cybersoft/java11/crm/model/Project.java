@@ -1,7 +1,6 @@
 package cybersoft.java11.crm.model;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.sql.Date;
 
 public class Project {
 	private int id;
@@ -9,7 +8,7 @@ public class Project {
 	private String description;
 	private Date start_date;
 	private Date end_date;
-	private int create_user_id;
+	private User create_user_id;
 	
 	// Constructor with params
 	public Project(int id, String name, String description, Date start_date, Date end_date) {
@@ -18,7 +17,7 @@ public class Project {
 		this.description = description;
 		this.start_date = start_date;
 		this.end_date = end_date;
-		this.create_user_id = -1;
+		this.create_user_id = null;
 	}
 	
 	// Constructor with no params
@@ -26,9 +25,9 @@ public class Project {
 		this.id = -1;
 		this.name = "";
 		this.description = "";
-		this.start_date = Calendar.getInstance().getTime();
-		this.end_date = null;
-		this.create_user_id = -1;
+		this.start_date = new Date(-1);
+		this.end_date = new Date(-1);
+		this.create_user_id = null;
 	}
 	
 	// add Getter/Setter
@@ -72,11 +71,11 @@ public class Project {
 		this.end_date = end_date;
 	}
 
-	public int getCreate_user_id() {
+	public User getCreate_user_id() {
 		return create_user_id;
 	}
 
-	public void setCreate_user_id(int create_user_id) {
+	public void setCreate_user_id(User create_user_id) {
 		this.create_user_id = create_user_id;
 	}
 	
