@@ -30,9 +30,12 @@ public class TaskDao {
 				newTask.setDescription(results.getString("description"));
 				newTask.setStart_date(results.getDate("start_date"));
 				newTask.setEnd_date(results.getDate("end_date"));
-				newTask.setAssignee(results.getInt("assignee"));
-				newTask.setProject_id(results.getInt("project_id"));
-				newTask.setStatus_id(results.getInt("status_id"));
+//				newTask.setAssignee(results.getInt("assignee"));
+//				newTask.setProject_id(results.getInt("project_id"));
+//				newTask.setStatus_id(results.getInt("status_id"));
+				newTask.setAssignee(null);
+				newTask.setProject_id(null);
+				newTask.setStatus_id(null);
 				
 				listTask.add(newTask);
 			}
