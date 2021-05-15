@@ -4,7 +4,7 @@ use crm;
 use `crm`;
 
 create table if not exists `role`(
-	id int,
+	id int auto_increment,
     name varchar(50) not null,
     description varchar(500),
     primary key (id)
@@ -12,25 +12,25 @@ create table if not exists `role`(
 
 
 create table if not exists `status`(
-	id int,
+	id int auto_increment,
     name varchar(50) not null,
     description varchar(500),
     primary key (id)
 );
 
 create table if not exists `user`(
-	id 			int,
+	id 			int auto_increment,
     email 		varchar(50) not null unique,
     password 	varchar(500) not null,
     fullName 	varchar(255) not null,
-    address 	varchar(500), 
+    address 	varchar(500), role
     phone 		varchar(36),
     role_id 	int not null,
     primary key (id)
 );
 
 create table if not exists `task`(
-	id 			int,
+	id 			int auto_increment,
     name 		varchar(100) not null,
     description varchar(500) not null,
     start_date	date default(NOW()),
@@ -42,7 +42,7 @@ create table if not exists `task`(
 );
 
 create table if not exists `project`(
-	id int,
+	id int auto_increment,
     name varchar(100) not null,
     description varchar(500) not null,
     start_date date,
@@ -52,7 +52,7 @@ create table if not exists `project`(
 );
 
 create table if not exists `Project_User`(
-	project_id int,
+	project_id int auto_increment,
     user_id int,
     join_date date default(NOW()),
     role_description varchar(500) not null,

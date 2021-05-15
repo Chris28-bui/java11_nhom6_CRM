@@ -7,7 +7,7 @@ public class User {
 	private String fullname;
 	private String address;
 	private String phone;
-	private int role;
+	private Role role;
 	
 	//constructor with variables
 	public User(int id, String email, String password, String fullname, String address, String phone) {
@@ -17,7 +17,7 @@ public class User {
 		this.fullname = fullname;
 		this.address = address;
 		this.phone = phone;
-		this.role = -1;
+		this.role = null;
 	}
 	
 	//constructor without variable
@@ -28,7 +28,7 @@ public class User {
 		this.fullname = "";
 		this.address = "";
 		this.phone = "";
-		this.role = -1;
+		this.role = null;
 	}
 	
 
@@ -81,11 +81,11 @@ public class User {
 		this.phone = phone;
 	}
 
-	public int getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(int role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 	

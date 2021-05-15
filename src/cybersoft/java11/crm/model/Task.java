@@ -9,19 +9,16 @@ public class Task {
 	private String description;
 	private Date start_date;
 	private Date end_date;
-	private int assignee;
-	private int project_id;
-	private int status_id;
+	private User assignee;
+	private Project project_id;
+	private Status status_id;
 	
-	public Task(int id, String name, String description, Date start_date, Date end_date, int assignee, int project_id, int status_id) {
+	public Task(int id, String name, String description, Date start_date, Date end_date) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.start_date = start_date;
 		this.end_date = end_date;
-		this.assignee = assignee;
-		this.project_id = project_id;
-		this.status_id = status_id;
 	}
 	
 	public Task() {
@@ -30,9 +27,6 @@ public class Task {
 		this.description = "";
 		this.start_date = Calendar.getInstance().getTime();
 		this.end_date = null;
-		this.assignee = -1;
-		this.project_id = -1;
-		this.status_id = -1;
 	}
 	
 	// Getter/Setter
@@ -76,27 +70,27 @@ public class Task {
 		this.end_date = end_date;
 	}
 
-	public int getAssignee() {
+	public User getAssignee() {
 		return assignee;
 	}
 
-	public void setAssignee(int assignee) {
+	public void setAssignee(User assignee) {
 		this.assignee = assignee;
 	}
 
-	public int getProject_id() {
+	public Project getProject_id() {
 		return project_id;
 	}
 
-	public void setProject_id(int project_id) {
+	public void setProject_id(Project project_id) {
 		this.project_id = project_id;
 	}
 
-	public int getStatus_id() {
+	public Status getStatus_id() {
 		return status_id;
 	}
 
-	public void setStatus_id(int status_id) {
+	public void setStatus_id(Status status_id) {
 		this.status_id = status_id;
 	}
 

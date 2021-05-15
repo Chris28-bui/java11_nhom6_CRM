@@ -32,7 +32,8 @@ public class ProjectDao {
 				newProject.setDescription(results.getString("description"));
 				newProject.setStart_date(results.getDate("start_date"));
 				newProject.setEnd_date(results.getDate("end_date"));
-				newProject.setCreate_user_id(results.getInt("create_user_id"));
+//				newProject.setCreate_user_id(results.getInt("create_user_id"));
+				newProject.setCreate_user_id(null);
 				listProject.add(newProject);
 			}
 		} catch (SQLException e) {
