@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import cybersoft.java11.crm.utils.UrlConst;
+
 @WebFilter(urlPatterns= {
 		"/*"
 })
@@ -30,10 +32,10 @@ public class AuthFilter implements Filter {
 		if(userId != null) {
 			chain.doFilter(request, response);
 		} else {
-			if(req.getServletPath().equals("/login") || req.getServletPath().startsWith("/assets/"))
+			if(req.getServletPath().equals(UrlConst.AUTH_LOGIN) || req.getServletPath().startsWith("/assets/"))
 				chain.doFilter(request, response);
 			else 
-				resp.sendRedirect(req.getContextPath() + "/login");
+				resp.sendRedirect(req.getContextPath() + UrlConst.AUTH_LOGIN);
 		}
 	}
 

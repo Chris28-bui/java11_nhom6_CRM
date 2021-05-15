@@ -24,11 +24,11 @@ public class EncodingFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		//code xử lý request trước khi đi vào servlet  
-		System.out.printf("Access time: %d\n", requestSeq++);
-		System.out.println("received request");
+//		System.out.printf("Access time: %d\n", requestSeq++);
+//		System.out.println("received request");
 		chain.doFilter(request, response);
 		//code xử lý response trước khi trả về cho client 
-		System.out.println("sent response");
+//		System.out.println("sent response");
 	}
 
 }
