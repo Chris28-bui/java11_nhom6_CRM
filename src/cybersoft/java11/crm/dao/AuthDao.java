@@ -32,12 +32,11 @@ public class AuthDao {
 			if(result.next()) {
 				newUser = new User();
 				newUser.setId(result.getInt("id"));
-				newUser.setEmail(email);
+				newUser.setEmail(result.getString("email"));
 				newUser.setFullname(result.getString("fullname"));
 				newUser.setAddress(result.getString("address"));
 				newUser.setPhone(result.getString("phone"));
 				newUser.setRole(null);
-				System.out.println(newUser.toString());
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
