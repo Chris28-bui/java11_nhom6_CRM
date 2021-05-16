@@ -5,15 +5,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import cybersoft.java11.crm.config.DatabaseConnection;
 import cybersoft.java11.crm.config.MySqlConnection;
+import cybersoft.java11.crm.dao.container.IOCContainer;
 import cybersoft.java11.crm.model.User;
 
 public class AuthDao {
+	private RoleDao roleDao;
+	
+	private DatabaseConnection _dbConnection;
+	
+	public AuthDao() {
+		roleDao = new RoleDao();
+		_dbConnection = IOCContainer.getDataBaseConnection();
+	}
+	
 	public User login(String email, String password) throws SQLException {
 //		User user = null;
 		User newUser = null;
 		
-		Connection connection = MySqlConnection.getConnection();
+		Connection connection = _dbConnection.getConnection();
 		
 		String query = "select id, email, fullname, address, phone, role_id\n"
 				+ "from user\n"
@@ -36,7 +47,7 @@ public class AuthDao {
 				newUser.setFullname(result.getString("fullname"));
 				newUser.setAddress(result.getString("address"));
 				newUser.setPhone(result.getString("phone"));
-				newUser.setRole(null);
+				newUser.setRole(roleDao.findByID(result.getInt("role_id")));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();

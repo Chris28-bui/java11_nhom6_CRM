@@ -7,16 +7,22 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
+import cybersoft.java11.crm.config.DatabaseConnection;
 import cybersoft.java11.crm.config.MySqlConnection;
+import cybersoft.java11.crm.dao.container.IOCContainer;
 import cybersoft.java11.crm.model.Task;
 
 public class TaskDao {
+	private DatabaseConnection _dbConnection;
 
+	public TaskDao() {
+		_dbConnection = IOCContainer.getDataBaseConnection();
+	}
 	
 	public List<Task> findAll() {
 		List<Task> listTask = new LinkedList<Task>();
 		
-		Connection connection = MySqlConnection.getConnection();
+		Connection connection = _dbConnection.getConnection();
 		
 		try {
 			Statement statement = connection.createStatement();

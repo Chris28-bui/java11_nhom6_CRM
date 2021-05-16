@@ -4,13 +4,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class MySqlConnection {
+public class MySqlConnection implements DatabaseConnection {
 	/* database connection information */
-	private static final String url = "jdbc:mysql://localhost:3306/crm";
-	private static final String username = "root";
-	private static final String password = "1234";
+	private final String url;
+	private final String username;
+	private final String password;
 	
-	public static Connection getConnection() {
+	public MySqlConnection(String url, String username, String password) {
+		this.url=url;
+		this.username = username;
+		this.password = password;
+	}
+	
+	public Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			return DriverManager.getConnection(url, username, password);

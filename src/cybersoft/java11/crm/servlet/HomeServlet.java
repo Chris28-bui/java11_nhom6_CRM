@@ -66,7 +66,7 @@ public class HomeServlet extends HttpServlet {
 			//set an attribute to current session
 			currentSession.setAttribute("loggedUser", "tuanphan91");
 			//set max time to wait for another request from client
-			currentSession.setMaxInactiveInterval(20); //second
+			currentSession.setMaxInactiveInterval(60*60); //second
 		}
 		
 		boolean databaseCheckResult = biz.checkHealth();

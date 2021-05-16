@@ -7,15 +7,23 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
+import cybersoft.java11.crm.config.DatabaseConnection;
 import cybersoft.java11.crm.config.MySqlConnection;
+import cybersoft.java11.crm.dao.container.IOCContainer;
 import cybersoft.java11.crm.model.Status;
 
 public class StatusDao {
+	private DatabaseConnection _dbConnection;
+	
+	public StatusDao() {
+		_dbConnection = IOCContainer.getDataBaseConnection();
+	}
+	
 	public List<Status> findAll(){
 		List<Status> statusList = new LinkedList<Status>();
 		
 		//establish connection
-		Connection connection = MySqlConnection.getConnection();
+		Connection connection = _dbConnection.getConnection();
 		try {
 			//query
 			Statement statement = connection.createStatement();
