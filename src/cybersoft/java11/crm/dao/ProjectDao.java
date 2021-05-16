@@ -11,15 +11,22 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import cybersoft.java11.crm.config.DatabaseConnection;
 import cybersoft.java11.crm.config.MySqlConnection;
+import cybersoft.java11.crm.dao.container.IOCContainer;
 import cybersoft.java11.crm.model.Project;
 
 public class ProjectDao {
+	private DatabaseConnection _dbConnection;
+	
+	public ProjectDao() {
+		_dbConnection = IOCContainer.getDatabaseConnection();
+	}
 	
 	public List<Project> findAll() {
 		List<Project> listProject = new LinkedList<Project>();
 		
-		Connection connection = MySqlConnection.getConnection();
+		Connection connection = _dbConnection.getConnection();
 		try {
 			Statement statement = connection.createStatement();
 			String query = "select id, name, description, start_date, end_date, create_user_id from project";

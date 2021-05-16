@@ -8,16 +8,25 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
+import cybersoft.java11.crm.config.DatabaseConnection;
 import cybersoft.java11.crm.config.MySqlConnection;
+import cybersoft.java11.crm.dao.container.IOCContainer;
 import cybersoft.java11.crm.model.Role;
 
 public class RoleDao {
+	private DatabaseConnection _dbConnection;
+	
+	public RoleDao() {
+		_dbConnection = IOCContainer.getDatabaseConnection();
+	}
+	
 	public List<Role> findAll(){
 		//return all roles in databases
 		List<Role> listRole = new LinkedList<Role>();
-		
-		Connection connection = MySqlConnection.getConnection();
+//		Connection connection = MySqlConnection.getConnection();
+		Connection connection = _dbConnection.getConnection();
 		try {
+			
 			Statement statement = connection.createStatement();
 			String query = "select id, name, description from role";
 			ResultSet results = statement.executeQuery(query);
@@ -44,7 +53,7 @@ public class RoleDao {
 	}
 	
 	public Role findByID(int id) {
-		Connection connection = MySqlConnection.getConnection();
+		Connection connection = _dbConnection.getConnection();
 		Role result = null;
 		
 		try {
@@ -79,7 +88,7 @@ public class RoleDao {
 	public int add(Role role) {
 		int result = -1;
 		
-		Connection connection = MySqlConnection.getConnection();
+		Connection connection = _dbConnection.getConnection();
 		
 		try {
 			String query = "insert role(`name`, `description`) values(?, ?)";
@@ -106,7 +115,7 @@ public class RoleDao {
 	public int update(int id, Role role) {
 		int result = -1;
 		
-		Connection connection = MySqlConnection.getConnection();
+		Connection connection = _dbConnection.getConnection();
 		
 		try {
 			String query = "update role set name = ?, description = ? where id = ?";
@@ -134,7 +143,7 @@ public class RoleDao {
 	public int deleteByID(int id) {
 		int result = -1;
 		
-		Connection connection = MySqlConnection.getConnection();
+		Connection connection = _dbConnection.getConnection();
 		
 		try {
 			String query = "delete from role where id = ?";

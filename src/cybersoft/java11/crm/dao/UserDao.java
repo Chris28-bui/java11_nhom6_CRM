@@ -1,20 +1,31 @@
 package cybersoft.java11.crm.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
+import cybersoft.java11.crm.config.DatabaseConnection;
 import cybersoft.java11.crm.config.MySqlConnection;
+import cybersoft.java11.crm.dao.container.IOCContainer;
 import cybersoft.java11.crm.model.User;
 
 public class UserDao {
+	private DatabaseConnection _dbConnection;
+	private RoleDao role;
+	
+	public UserDao() {
+		_dbConnection = IOCContainer.getDatabaseConnection();
+		role = new RoleDao();
+	}
+	
 	public List<User> findAll(){
 		List<User> userList = new LinkedList<User>();
 		
-		Connection connection = MySqlConnection.getConnection();
+		Connection connection = _dbConnection.getConnection();
 		
 		try {
 			Statement statement = connection.createStatement();
@@ -39,5 +50,41 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		return userList;
+	}
+	
+	public User findById(int id) {
+		User newUser = null;
+		
+		Connection connection = _dbConnection.getConnection();
+		String query  = "select * from User where id=?";
+		
+		try {
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, id);
+			
+			ResultSet results = statement.executeQuery();
+			
+			while(results.next()) {
+				newUser.setId(results.getInt("id"));
+				newUser.setFullname(results.getString("fullname"));
+				newUser.setEmail(results.getString("email"));
+				newUser.setAddress(results.getString("address"));
+				newUser.setPhone(results.getString("phone"));
+				newUser.setRole(null);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+			}
+		}
+		
+		return newUser;
 	}
 }
