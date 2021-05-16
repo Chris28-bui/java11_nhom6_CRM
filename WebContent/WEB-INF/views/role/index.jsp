@@ -52,12 +52,24 @@
 							${role.description}
 						</td>
 						<td class="col-3 button-list d-flex flex-wrap">
-							<a href="<c:url value="<%=UrlConst.ROLE_UPDATE %>" />?id=${role.id}" class="btn btn-primary">
-	                            <i class="material-icons">edit</i>
-	                        </a>
-	                        <a href="<c:url value="<%=UrlConst.ROLE_DELETE %>" />?id=${role.id}" class="btn btn-danger">
-	                            <i class="material-icons">delete_forever</i>
-	                        </a>
+							<c:choose>
+								<c:when test="${userRole.id == 1 }">
+									<a href="<c:url value="<%=UrlConst.ROLE_UPDATE %>" />?id=${role.id}" class="btn btn-primary">
+	                            		<i class="material-icons">edit</i>
+	                        		</a>
+	                        		<a href="<c:url value="<%=UrlConst.ROLE_DELETE %>" />?id=${role.id}" class="btn btn-danger" >
+	                            		<i class="material-icons">delete_forever</i>
+	                        		</a>
+								</c:when>
+								<c:otherwise>
+									<a class="btn btn-primary">
+	                            		<i class="material-icons">edit</i>
+	                        		</a>
+	                        		<a class="btn btn-danger" >
+	                            		<i class="material-icons">delete_forever</i>
+	                        		</a>
+								</c:otherwise>
+							</c:choose>
 						</td>
 					</tr>
 				</c:forEach>

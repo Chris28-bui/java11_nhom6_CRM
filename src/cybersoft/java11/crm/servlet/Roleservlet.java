@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import cybersoft.java11.crm.biz.RoleBiz;
 import cybersoft.java11.crm.model.Role;
@@ -29,6 +30,7 @@ public class Roleservlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.init();
 		biz = new RoleBiz();
+		
 	}
 	
 	@Override
@@ -37,10 +39,13 @@ public class Roleservlet extends HttpServlet {
 		String path = req.getServletPath();
 		switch(path) {
 			case UrlConst.ROLE_DASHBOARD:	
-				List<Role> listRole = biz.findAll();
+
+				HttpSession curSession = req.getSession();
+				req.setAttribute("roleId", curSession.getAttribute("userRole"));
 				
+				List<Role> listRole = biz.findAll();
 				req.setAttribute("roles", listRole);
-					
+
 				req.getRequestDispatcher(JspPathConst.ROLE_DASHBOARD).forward(req, resp);
 				break;
 			case UrlConst.ROLE_ADD:
