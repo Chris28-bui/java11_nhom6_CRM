@@ -15,11 +15,11 @@ import cybersoft.java11.crm.model.User;
 
 public class UserDao {
 	private DatabaseConnection _dbConnection;
-	private RoleDao role;
+	private RoleDao roleDao;
 	
 	public UserDao() {
 		_dbConnection = IOCContainer.getDatabaseConnection();
-		role = new RoleDao();
+		roleDao = new RoleDao();
 	}
 	
 	public List<User> findAll(){
@@ -31,7 +31,7 @@ public class UserDao {
 			Statement statement = connection.createStatement();
 			String query = "select id, email, password, fullname, address, phone, role_id from user";
 			ResultSet results = statement.executeQuery(query);
-			
+				
 			while(results.next()) {
 				User newUser = new User();
 				
@@ -41,8 +41,8 @@ public class UserDao {
 				newUser.setFullname(results.getString("fullname"));
 				newUser.setAddress(results.getString("address"));
 				newUser.setPhone(results.getString("phone"));
-//				newUser.setRole(results.getObject("role_id"));
-				newUser.setRole(null);
+				newUser.setRole(roleDao.findByID(results.getInt("role_id")));
+//				newUser.setRole(null);
 				
 				userList.add(newUser);
 			}

@@ -15,7 +15,6 @@ import cybersoft.java11.crm.model.Task;
 
 public class TaskDao {
 	private DatabaseConnection _dbConnection;
-	
 	public TaskDao() {
 		_dbConnection = IOCContainer.getDatabaseConnection();
 	}

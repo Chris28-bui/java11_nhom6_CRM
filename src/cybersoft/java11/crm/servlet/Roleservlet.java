@@ -37,13 +37,12 @@ public class Roleservlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String path = req.getServletPath();
+		HttpSession session = req.getSession();
 		switch(path) {
 			case UrlConst.ROLE_DASHBOARD:	
-
-				HttpSession curSession = req.getSession();
-				req.setAttribute("roleId", curSession.getAttribute("userRole"));
-				
+				req.setAttribute("roleId", session.getAttribute("userRole"));
 				List<Role> listRole = biz.findAll();
+				HttpSession curSession = req.getSession();
 				req.setAttribute("roles", listRole);
 
 				req.getRequestDispatcher(JspPathConst.ROLE_DASHBOARD).forward(req, resp);
@@ -112,6 +111,7 @@ public class Roleservlet extends HttpServlet {
 					role.setDescription(description);
 					
 					biz.update(id, role);
+					
 					resp.sendRedirect(req.getContextPath() + UrlConst.ROLE_DASHBOARD);
 				}
 				break;

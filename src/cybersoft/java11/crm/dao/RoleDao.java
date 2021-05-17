@@ -26,7 +26,6 @@ public class RoleDao {
 //		Connection connection = MySqlConnection.getConnection();
 		Connection connection = _dbConnection.getConnection();
 		try {
-			
 			Statement statement = connection.createStatement();
 			String query = "select id, name, description from role";
 			ResultSet results = statement.executeQuery(query);
@@ -81,7 +80,6 @@ public class RoleDao {
 				ex.printStackTrace();
 			}
 		}
-		
 		return result;
 	}
 	

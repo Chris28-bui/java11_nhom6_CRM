@@ -32,12 +32,9 @@ public class AuthServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO: forward to login.jsp
-//		req.getRequestDispatcher(UrlConst.LOGIN).forward(req, resp);
 		String path = req.getServletPath();
 		switch(path) {
 			case UrlConst.AUTH_LOGIN:
-//				RequestDispatcher dispatcher = req.getRequestDispatcher(JspPathConst.AUTH_LOGIN);
-//				dispatcher.forward(req, resp);
 				req.getRequestDispatcher(JspPathConst.AUTH_LOGIN).forward(req, resp);
 			break;
 			

@@ -82,6 +82,7 @@ public class User {
 	}
 
 	public Role getRole() {
+		System.out.println(this.role);
 		return role;
 	}
 
