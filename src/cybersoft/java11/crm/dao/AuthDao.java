@@ -16,12 +16,11 @@ public class AuthDao {
 	private DatabaseConnection _dbConnection;
 	
 	public AuthDao() {
+		_dbConnection = IOCContainer.getDatabaseConnection();
 		roleDao = new RoleDao();
-		_dbConnection = IOCContainer.getDataBaseConnection();
 	}
 	
 	public User login(String email, String password) throws SQLException {
-//		User user = null;
 		User newUser = null;
 		
 		Connection connection = _dbConnection.getConnection();

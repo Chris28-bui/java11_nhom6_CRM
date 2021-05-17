@@ -14,20 +14,18 @@ import cybersoft.java11.crm.dao.container.IOCContainer;
 import cybersoft.java11.crm.model.Role;
 
 public class RoleDao {
-	DatabaseConnection _dbConnection;
+	private DatabaseConnection _dbConnection;
 	
 	public RoleDao() {
-		_dbConnection = IOCContainer.getDataBaseConnection();
+		_dbConnection = IOCContainer.getDatabaseConnection();
 	}
 	
 	public List<Role> findAll(){
 		//return all roles in databases
 		List<Role> listRole = new LinkedList<Role>();
-		
+//		Connection connection = MySqlConnection.getConnection();
 		Connection connection = _dbConnection.getConnection();
-		
 		try {
-//			Connection  = _dbConnection.getConnection();
 			Statement statement = connection.createStatement();
 			String query = "select id, name, description from role";
 			ResultSet results = statement.executeQuery(query);

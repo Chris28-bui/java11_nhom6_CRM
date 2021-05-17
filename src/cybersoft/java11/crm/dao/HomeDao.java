@@ -9,11 +9,10 @@ import cybersoft.java11.crm.config.MySqlConnection;
 import cybersoft.java11.crm.dao.container.IOCContainer;
 
 public class HomeDao {
-	
 	private DatabaseConnection _dbConnection;
 	
 	public HomeDao() {
-		_dbConnection = IOCContainer.getDataBaseConnection();
+		_dbConnection = IOCContainer.getDatabaseConnection();
 	}
 	
 	public boolean testConnection() {

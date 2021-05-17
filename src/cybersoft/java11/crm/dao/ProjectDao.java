@@ -22,14 +22,13 @@ public class ProjectDao {
 	private UserDao userDao;
 	
 	public ProjectDao() {
+		_dbConnection = IOCContainer.getDatabaseConnection();
 		userDao = new UserDao();
-		_dbConnection = IOCContainer.getDataBaseConnection();
 	}
 	
 	public List<Project> findAll() {
 		List<Project> listProject = new LinkedList<Project>();
-		
-		Connection connection =_dbConnection.getConnection();
+		Connection connection = _dbConnection.getConnection();
 		try {
 			Statement statement = connection.createStatement();
 			String query = "select id, name, description, start_date, end_date, create_user_id from project";

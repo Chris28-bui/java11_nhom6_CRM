@@ -1,6 +1,7 @@
 package cybersoft.java11.crm.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,7 +17,7 @@ public class StatusDao {
 	private DatabaseConnection _dbConnection;
 	
 	public StatusDao() {
-		_dbConnection = IOCContainer.getDataBaseConnection();
+		_dbConnection = IOCContainer.getDatabaseConnection();
 	}
 	
 	public List<Status> findAll(){
@@ -43,8 +44,49 @@ public class StatusDao {
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+			}
 		}
 		
 		return statusList;
+	}
+	
+	public Status findById(int id) {
+		Status newStatus = null;
+		
+		Connection connection = _dbConnection.getConnection();
+		String query = "select * from status where id=? ";
+		
+		try {
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, id);
+			
+			ResultSet results = statement.executeQuery();
+			
+			while (results.next()) {
+				newStatus.setId(results.getInt("id"));
+				newStatus.setName(results.getString("name"));
+				newStatus.setDescription(results.getString("description"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+			}
+		}
+		
+		
+		return newStatus;
 	}
 }

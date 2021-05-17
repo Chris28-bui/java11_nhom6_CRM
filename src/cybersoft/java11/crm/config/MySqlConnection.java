@@ -6,17 +6,20 @@ import java.sql.SQLException;
 
 public class MySqlConnection implements DatabaseConnection {
 	/* database connection information */
-	private final String url;
-	private final String username;
-	private final String password;
+	private static String url;
+	private static String username; 
+	private static String password; 
 	
 	public MySqlConnection(String url, String username, String password) {
-		this.url=url;
+		this.url = url;
 		this.username = username;
 		this.password = password;
 	}
-	
+
+
+	@Override
 	public Connection getConnection() {
+		// TODO Auto-generated method stub
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			return DriverManager.getConnection(url, username, password);

@@ -59,8 +59,6 @@ public class HomeServlet extends HttpServlet {
 		//session
 		HttpSession currentSession = req.getSession();
 		
-		System.out.println(currentSession.getAttribute("loggedUser"));
-		
 		//check attribute is available already or not
 		if(currentSession.getAttribute("loggedUser") == null) {
 			//set an attribute to current session
