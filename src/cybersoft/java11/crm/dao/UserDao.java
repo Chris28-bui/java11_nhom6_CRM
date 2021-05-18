@@ -64,7 +64,7 @@ public class UserDao {
 			
 			ResultSet results = statement.executeQuery();
 			
-			while(results.next()) {
+			if(results.next()) {
 				newUser.setId(results.getInt("id"));
 				newUser.setFullname(results.getString("fullname"));
 				newUser.setEmail(results.getString("email"));

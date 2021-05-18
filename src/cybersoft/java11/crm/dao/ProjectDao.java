@@ -89,16 +89,15 @@ public class ProjectDao {
 		int result = -1;
 		
 		Connection connection = _dbConnection.getConnection();
-		String query = "insert into project values (?, ?, ?, ?, ?, ?)";
+		String query = "insert project(`name`, `description`, `start_date`, `end_date`, `create_user_id`) values (?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setInt(1, project.getId());
-			statement.setString(2, project.getName());
-			statement.setString(3, project.getDescription());
-			statement.setDate(4, project.getStart_date());
-			statement.setDate(5, project.getEnd_date());
-			statement.setInt(6, project.getCreate_user_id().getId());
+			statement.setString(1, project.getName());
+			statement.setString(2, project.getDescription());
+			statement.setDate(3, project.getStart_date());
+			statement.setDate(4, project.getEnd_date());
+			statement.setInt(5, project.getCreate_user_id().getId());
 			
 			result = statement.executeUpdate();
 		} catch(SQLException e) {
@@ -118,7 +117,7 @@ public class ProjectDao {
 		int result = -1;
 		
 		Connection connection = _dbConnection.getConnection();
-		String query = "delete from project from id=?";
+		String query = "delete from project where id=?";
 		
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
