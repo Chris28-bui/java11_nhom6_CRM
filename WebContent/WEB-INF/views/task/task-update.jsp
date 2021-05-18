@@ -41,7 +41,7 @@
                 <p class="text-muted">Task name should be capitalized.</p>
                 <p class="text-muted">Date should be inputted in the format (YYYY-MM-DD)</p>
                 <p class="text-muted">Assignee, Project_id should be input as number</p>
-                <p class="text-muted">Status: 1 - NOT DONE, 2 - IN PROGRESS, 3 - DONE</p>
+                <p class="text-muted">Status: 1 - NOT DONE (ND), 2 - IN PROGRESS (PROG), 3 - DONE (D)</p>
             </div>
             <div class="col-lg-8 card-form__body card-body">
                 <form action='<c:url value="<%=UrlConst.TASK_UPDATE%>" />' method="post">
