@@ -71,7 +71,7 @@
 						</td>
 						<td class="col-3 button-list d-flex flex-wrap">
 	                        <c:choose>
-	                        	<c:when test="${roleId.id == 2}">
+	                        	<c:when test="${roleId.id == 1 }">
 	                        		<a href="<c:url value="<%=UrlConst.PROJECT_UPDATE %>" />?id=${project.id}" class="btn btn-primary">
 	                           			<i class="material-icons">edit</i>
 	                        		</a>
