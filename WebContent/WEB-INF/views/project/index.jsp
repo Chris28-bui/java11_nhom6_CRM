@@ -19,8 +19,16 @@
                 <h1 class="m-0">Project Dashboard</h1>
             </div>
             <div class="ml-auto">
-                <a href="<c:url value="<%=UrlConst.PROJECT_ADD %>" />" class="btn btn-light"><i class="material-icons icon-16pt text-muted mr-1">add</i>
-    Add</a>
+            	<c:choose>
+            		<c:when test="${roleId.id == 'manager'}">
+            			<a href="<c:url value="<%=UrlConst.PROJECT_ADD %>" />" class="btn btn-light"><i class="material-icons icon-16pt text-muted mr-1">add</i>
+    						Add</a>
+            		</c:when>
+            		<c:otherwise>
+            			<a href="#" class="btn btn-light"><i class="material-icons icon-16pt text-muted mr-1">add</i>
+    						Add</a>
+            		</c:otherwise>
+            	</c:choose>
             </div>
         </div>
     </div>
@@ -71,7 +79,7 @@
 						</td>
 						<td class="col-3 button-list d-flex flex-wrap">
 	                        <c:choose>
-	                        	<c:when test="${roleId.id == 1 }">
+	                        	<c:when test="${roleId.name=='manager'}">
 	                        		<a href="<c:url value="<%=UrlConst.PROJECT_UPDATE %>" />?id=${project.id}" class="btn btn-primary">
 	                           			<i class="material-icons">edit</i>
 	                        		</a>
@@ -88,6 +96,9 @@
 	                        		</a>
 	                        	</c:otherwise>
 	                        </c:choose>
+	                        	<a href="<c:url value="<%=UrlConst.TASK_DASHBOARD %>"/>?id=${project.id}" class="btn btn-success">
+	                        		<i class="material-icons material-icons-outlined">assignment</i>
+	                        	</a>
 						</td>
 					</tr>
 				</c:forEach>

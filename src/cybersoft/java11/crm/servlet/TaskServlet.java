@@ -49,8 +49,14 @@ public class TaskServlet extends HttpServlet {
 		
 		switch (path) {
 		case UrlConst.TASK_DASHBOARD:
-			List<Task> listTask = task.findAll();
-			req.setAttribute("listTask", listTask);
+			String taskId = req.getParameter("id");
+			if(taskId != null) {
+				List<Task> listTask = task.findByProjectId(Integer.parseInt(taskId));
+				req.setAttribute("listTask", listTask);
+			} else {
+				List<Task> listTask = task.findAll();
+				req.setAttribute("listTask", listTask);
+			}
 			req.getRequestDispatcher(JspPathConst.TASK_DASHBOARD).forward(req, resp);
 			break;
 		case UrlConst.TASK_ADD:
