@@ -53,24 +53,27 @@ public class UserDao {
 	}
 	
 	public User findById(int id) {
-		User newUser = null;
+		User user = null;
 		
 		Connection connection = _dbConnection.getConnection();
-		String query  = "select * from User where id=?";
 		
 		try {
+			String query  = "select * from user where id=?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setInt(1, id);
 			
 			ResultSet results = statement.executeQuery();
 			
-			while(results.next()) {
+			if(results.next()) {
+				User newUser = new User();
 				newUser.setId(results.getInt("id"));
 				newUser.setFullname(results.getString("fullname"));
 				newUser.setEmail(results.getString("email"));
 				newUser.setAddress(results.getString("address"));
 				newUser.setPhone(results.getString("phone"));
 				newUser.setRole(null);
+				
+				user = newUser;
 			}
 			
 		} catch (SQLException e) {
@@ -85,6 +88,6 @@ public class UserDao {
 			}
 		}
 		
-		return newUser;
+		return user;
 	}
 }
