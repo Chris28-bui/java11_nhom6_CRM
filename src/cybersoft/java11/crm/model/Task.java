@@ -1,7 +1,6 @@
 package cybersoft.java11.crm.model;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.sql.Date;
 
 public class Task {
 	private int id;
@@ -25,7 +24,7 @@ public class Task {
 		this.id = -1;
 		this.name = "";
 		this.description = "";
-		this.start_date = Calendar.getInstance().getTime();
+		this.start_date = null;
 		this.end_date = null;
 	}
 	
@@ -100,6 +99,7 @@ public class Task {
 				+ ", end_date=" + end_date + ", assignee=" + assignee + ", project_id=" + project_id + ", status_id="
 				+ status_id + "]";
 	}
+
 	
 	
 }
