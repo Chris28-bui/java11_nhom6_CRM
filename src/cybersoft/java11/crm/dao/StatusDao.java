@@ -57,10 +57,10 @@ public class StatusDao {
 	}
 	
 	public Status findById(int id) {
-		Status newStatus = null;
+		Status newStatus = new Status();
 		
 		Connection connection = _dbConnection.getConnection();
-		String query = "select * from status where id=? ";
+		String query = "select id, name, description from status where id=? ";
 		
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
