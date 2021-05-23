@@ -14,7 +14,7 @@
                         <li class="breadcrumb-item"><a href="<c:url value="<%=UrlConst.HOME %>" />">Home</a></li>
                         <li class="breadcrumb-item"><a href="<c:url value="<%=UrlConst.USER_DASHBOARD %>" />">User</a></li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Add new user
+                            Update user
                         </li>
                     </ol>
                 </nav>
@@ -79,7 +79,7 @@
                                 </select>
                           <%-- <input type="text" class="form-control" id="role_id" name="role_id" value="${user.role.id}"> --%>   
                     </div>
-                    <button type="submit" class="btn btn-lg btn-primary">Add</button>
+                    <button type="submit" class="btn btn-lg btn-primary">Update</button>
                 </form>
             </div>
         </div>

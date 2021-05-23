@@ -37,19 +37,17 @@
 					<th class="col-2">
 						Email
 					</th>
-					<th class="col-2">
-						Password
-					</th>
+					
 					<th class="col-2">
 						Address
 					</th>
 					<th class="col-2">
 						Phone
 					</th>
-					<th class="col-1">
+					<th class="col-2">
 						Role
 					</th>
-					<th class="col-1">
+					<th class="col-2">
 						Action
 					</th>
 				</tr>
@@ -63,19 +61,17 @@
 						<td class="col-2">
 							${user.email}
 						</td>
-						<td class="col-2">
-							${user.password}
-						</td>
+						
 						<td class="col-2">
 							${user.address}
 						</td>
 						<td class="col-2">
 							${user.phone}
 						</td>
-						<td class="col-1">
+						<td class="col-2">
 							${user.role.name}
 						</td>
-						<td class="col-1 button-list d-flex flex-wrap">
+						<td class="col-2 button-list d-flex flex-wrap">
 							<a href="<c:url value="<%=UrlConst.USER_UPDATE %>" />?id=${user.id}" class="btn btn-primary">
 	                            <i class="material-icons">edit</i>
 	                        </a>
