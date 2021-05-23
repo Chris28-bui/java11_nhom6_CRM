@@ -51,13 +51,26 @@
 						<td class="col-1">${task.assignee.id }</td>
 						<td class="col-1">${task.project_id.id }</td>
 						<td class="col-1">${task.status_id.name}</td>
-						<td class="col-2 button-list d-flex flex-wrap"><a
-							href="<c:url value="<%=UrlConst.TASK_UPDATE %>" />?id=${task.id}"
-							class="btn btn-primary"> <i class="material-icons">edit</i>
-						</a> <a
-							href="<c:url value="<%=UrlConst.TASK_DELETE %>" />?id=${task.id}"
-							class="btn btn-danger"> <i class="material-icons">delete_forever</i>
-						</a></td>
+						<td class="col-2 button-list d-flex flex-wrap">
+							<c:choose>
+	                        	<c:when test="${roleId.name=='ADMIN'}">
+	                        		<a href="<c:url value="<%=UrlConst.TASK_UPDATE %>" />?id=${project.id}" class="btn btn-primary">
+	                           			<i class="material-icons">edit</i>
+	                        		</a>
+	                        		<a href="<c:url value="<%=UrlConst.TASK_DELETE %>" />?id=${project.id}" class="btn btn-danger">
+	                            		<i class="material-icons">delete_forever</i>
+	                        		</a>
+	                        	</c:when>
+	                        	<c:otherwise>
+	                        		<a class="btn btn-primary">
+	                           			<i class="material-icons">edit</i>
+	                        		</a>
+	                        		<a class="btn btn-danger">
+	                            		<i class="material-icons">delete_forever</i>
+	                        		</a>
+	                        	</c:otherwise>
+	                        </c:choose>
+						</td>
 					</tr>
 				</c:forEach>
 				<c:if test="${listTask == null}">

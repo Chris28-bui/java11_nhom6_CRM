@@ -20,7 +20,7 @@
             </div>
             <div class="ml-auto">
             	<c:choose>
-            		<c:when test="${roleId.id == 'manager'}">
+            		<c:when test="${roleId.name == 'manager'}">
             			<a href="<c:url value="<%=UrlConst.PROJECT_ADD %>" />" class="btn btn-light"><i class="material-icons icon-16pt text-muted mr-1">add</i>
     						Add</a>
             		</c:when>
@@ -79,7 +79,7 @@
 						</td>
 						<td class="col-3 button-list d-flex flex-wrap">
 	                        <c:choose>
-	                        	<c:when test="${roleId.name=='manager'}">
+	                        	<c:when test="${roleId.name=='ADMIN'}">
 	                        		<a href="<c:url value="<%=UrlConst.PROJECT_UPDATE %>" />?id=${project.id}" class="btn btn-primary">
 	                           			<i class="material-icons">edit</i>
 	                        		</a>
