@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="cybersoft.java11.crm.utils.UrlConst" %>
 <div class="page__header mb-0">
     <div class="container page__container">
         <div class="navbar navbar-secondary navbar-light navbar-expand-sm p-0">
@@ -33,7 +34,7 @@
                             User
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="<%=request.getContextPath()+UrlConst.USER_DASHBOARD%>">
                                 User List
                             </a>
                             <a class="dropdown-item" href="#">
