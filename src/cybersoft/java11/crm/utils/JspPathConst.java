@@ -11,6 +11,9 @@ public class JspPathConst {
 	
 	//USER
 	public static final String USER_DASHBOARD = "/WEB-INF/views/user/index.jsp";
+	public static final String USER_ADD = "/WEB-INF/views/user/User-Add.jsp";
+	public static final String USER_UPDATE = "/WEB-INF/views/user/User-Update.jsp";
+
 	
 	//TASK
 	public static final String TASK_DASHBOARD = "/WEB-INF/views/task/index.jsp";
