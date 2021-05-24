@@ -43,7 +43,7 @@
                 <form action='<c:url value="<%=UrlConst.ROLE_UPDATE%>" />' method="post">
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" name="role-name" value="${role.name}">
+                        <input type="text" class="form-control" id="name" name="role-name" value="${role.name }">
                     </div>
                     <div class="form-group">
                         <label for="description">Description:</label>

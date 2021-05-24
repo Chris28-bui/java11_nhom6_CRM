@@ -25,8 +25,8 @@ public class Project {
 		this.id = -1;
 		this.name = "";
 		this.description = "";
-		this.start_date = null;;
-		this.end_date = null;
+		this.start_date = new Date(-1);
+		this.end_date = new Date(-1);
 		this.create_user_id = null;
 	}
 	
