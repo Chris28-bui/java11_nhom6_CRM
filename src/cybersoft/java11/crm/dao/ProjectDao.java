@@ -147,7 +147,6 @@ public class ProjectDao {
 			statement.setString(1, project.getName());
 			statement.setString(2, project.getDescription());
 			statement.setDate(3, project.getEnd_date());
-//			System.out.println(project.getEnd_date() + "from projectdao");
 			statement.setInt(4, id);
 			
 			result = statement.executeUpdate();
