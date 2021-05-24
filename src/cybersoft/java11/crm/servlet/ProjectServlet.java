@@ -122,7 +122,7 @@ public class ProjectServlet extends HttpServlet{
 					projectUpdate.setName(projectNameUpdated);
 					projectUpdate.setDescription(projectDescriptionUpdated);
 					projectUpdate.setEnd_date(projectEndDateUpdated);
-					
+					System.out.println(projectEndDateUpdated);
 					biz.update(projectID, projectUpdate);
 					resp.sendRedirect(req.getContextPath() + UrlConst.PROJECT_DASHBOARD);
 				}

@@ -15,8 +15,10 @@ import javax.servlet.http.HttpSession;
 import cybersoft.java11.crm.utils.UrlConst;
 
 @WebFilter(urlPatterns= {
-		UrlConst.ROOT
-})
+		UrlConst.ROOT})
+
+
+
 public class AuthFilter implements Filter {
 
 	@Override
@@ -31,16 +33,18 @@ public class AuthFilter implements Filter {
 	String userId = (String) session.getAttribute("userId");
 		//String userId = String.valueOf(session.getAttribute("userId")).toString();
 		//String userId = (String)session.getAttribute("userId");
+
+
 		if(userId != null) {
 			chain.doFilter(request, response);
 		} else {
 			if(req.getServletPath().equals(UrlConst.AUTH_LOGIN) || req.getServletPath().startsWith("/assets/"))
 				chain.doFilter(request, response);
-
-			else 
+			else {
 //				System.out.println("from elseAuthFilter");
 				resp.sendRedirect(req.getContextPath() + UrlConst.AUTH_LOGIN);
-      
+			}
+				
 		}
 	}
 
