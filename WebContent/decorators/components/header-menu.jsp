@@ -34,7 +34,7 @@
                             User
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="<%=request.getContextPath()+UrlConst.USER_DASHBOARD%>">
                                 User List
                             </a>
                             <a class="dropdown-item" href="#">
