@@ -11,19 +11,20 @@ public class IOCContainer {
 	public static DatabaseConnection getDatabaseConnection() {
 		// TODO Auto-generated method stub
 		
-		String url;
-		String username;
-		String password;
+		String url = "jdbc:mysql://localhost:3306/crm";
+		String username = "root";
+		String password = "1234";
 		
-		if(ENV.equals("PRODUCTION")) {
-			url = "jdbc:mysql://localhost:3306/crm";
-			username = "root";
-			password = "1234";
-		} else {
-			url = "jdbc:mysql://localhost:3306/crm";
-			username = "root";
-			password = "1234";
-		}
+//		if(ENV.equals("PRODUCTION")) {
+//			url = "jdbc:mysql://localhost:3306/crm";
+//			username = "root";
+//			password = "1234";
+//		} else {
+//			url = "jdbc:mysql://localhost:3306/crm";
+//			username = "root";
+//			password = "1234";
+//		}
+		
 		
 		if(_mySqlConnection == null) {
 			return new MySqlConnection(url, username, password); 
