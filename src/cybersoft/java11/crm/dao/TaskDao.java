@@ -32,16 +32,16 @@ public class TaskDao {
 		
 		try {
 			Statement statement = connection.createStatement();
-			String query = "select id, name, description, start_date, end_date, assignee, project_id, status_id from task";
+			String query = "select id, name, description, start_date, due_date, assignee, project_id, status_id from task";
+
 			ResultSet results = statement.executeQuery(query);
-			
 			while (results.next()) {
 				Task newTask = new Task();
 				newTask.setId(results.getInt("id"));
 				newTask.setName(results.getString("name"));
 				newTask.setDescription(results.getString("description"));
 				newTask.setStart_date(results.getDate("start_date"));
-				newTask.setEnd_date(results.getDate("end_date"));
+				newTask.setEnd_date(results.getDate("due_date"));
 				newTask.setAssignee(user.findById(results.getInt("assignee")));
 				newTask.setProject_id(project.findByID(results.getInt("project_id")));
 				newTask.setStatus_id(status.findById(results.getInt("status_id")));
