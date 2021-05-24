@@ -32,7 +32,6 @@ public class MySqlConnection implements DatabaseConnection {
 			e.printStackTrace();
 			System.out.println("Can not connect to database.");
 			System.out.println("Driver not found");
-			e.printStackTrace();
 		} 
 		return null;
 	}
