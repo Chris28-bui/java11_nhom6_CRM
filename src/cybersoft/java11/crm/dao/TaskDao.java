@@ -32,7 +32,7 @@ public class TaskDao {
 		
 		try {
 			Statement statement = connection.createStatement();
-			String query = "select id, name, description, start_date, end_date, assignee, project_id, status_id from task";
+			String query = "select id, name, description, start_date, due_date, assignee, project_id, status_id from task";
 			ResultSet results = statement.executeQuery(query);
 			
 			while (results.next()) {
@@ -41,7 +41,7 @@ public class TaskDao {
 				newTask.setName(results.getString("name"));
 				newTask.setDescription(results.getString("description"));
 				newTask.setStart_date(results.getDate("start_date"));
-				newTask.setEnd_date(results.getDate("end_date"));
+				newTask.setEnd_date(results.getDate("due_date"));
 				newTask.setAssignee(user.findById(results.getInt("assignee")));
 				newTask.setProject_id(project.findByID(results.getInt("project_id")));
 				newTask.setStatus_id(status.findById(results.getInt("status_id")));
@@ -65,7 +65,7 @@ public class TaskDao {
 		List<Task> projectTask = new LinkedList<Task>();
 		
 		Connection connection = _dbConnection.getConnection();
-		String query = "select id, name, description, start_date, end_date, assignee, project_id, status_id from task where project_id=?";
+		String query = "select id, name, description, start_date, due_date, assignee, project_id, status_id from task where project_id=?";
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setInt(1, id);
@@ -77,7 +77,7 @@ public class TaskDao {
 				newTask.setName(results.getString("name"));
 				newTask.setDescription(results.getString("description"));
 				newTask.setStart_date(results.getDate("start_date"));
-				newTask.setEnd_date(results.getDate("end_date"));
+				newTask.setEnd_date(results.getDate("due_date"));
 				newTask.setAssignee(user.findById(results.getInt("assignee")));
 				newTask.setProject_id(project.findByID(results.getInt("project_id")));
 				newTask.setStatus_id(status.findById(results.getInt("status_id")));
@@ -116,7 +116,7 @@ public class TaskDao {
 				task.setName(results.getString("name"));
 				task.setDescription(results.getString("description"));
 				task.setStart_date(results.getDate("start_date"));
-				task.setEnd_date(results.getDate("end_date"));
+				task.setEnd_date(results.getDate("due_date"));
 				task.setAssignee(user.findById(results.getInt("assignee")));
 				task.setProject_id(project.findByID(results.getInt("project_id")));
 				task.setStatus_id(status.findById(results.getInt("status_id")));
@@ -139,7 +139,7 @@ public class TaskDao {
 		int result = -1;
 		
 		Connection connection = _dbConnection.getConnection();
-		String query = "insert task(`name`, `description`, `start_date`, `end_date`, `assignee`, `project_id`, `status_id`) values(?, ?, ?, ?, ?, ?, ?)";
+		String query = "insert task(`name`, `description`, `start_date`, `due_date`, `assignee`, `project_id`, `status_id`) values(?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, newTask.getName());
@@ -171,7 +171,7 @@ public class TaskDao {
 		Connection connection = _dbConnection.getConnection();
 		
 		try {
-			String query = "update task set name = ?, description = ?, start_date = ?, end_date = ?, assignee = ?, project_id = ?, status_id = ? where id = ?";
+			String query = "update task set name = ?, description = ?, start_date = ?, due_date = ?, assignee = ?, project_id = ?, status_id = ? where id = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			
 			statement.setString(1, task.getName());
