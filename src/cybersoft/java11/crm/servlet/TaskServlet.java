@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import cybersoft.java11.crm.biz.TaskBiz;
 import cybersoft.java11.crm.dao.ProjectDao;
@@ -46,7 +47,7 @@ public class TaskServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String path = req.getServletPath();
-		
+		HttpSession session = req.getSession();
 		switch (path) {
 		case UrlConst.TASK_DASHBOARD:
 			String taskId = req.getParameter("id");
@@ -57,6 +58,7 @@ public class TaskServlet extends HttpServlet {
 				List<Task> listTask = task.findAll();
 				req.setAttribute("listTask", listTask);
 			}
+			req.setAttribute("roleId", session.getAttribute("userRole"));
 			req.getRequestDispatcher(JspPathConst.TASK_DASHBOARD).forward(req, resp);
 			break;
 		case UrlConst.TASK_ADD:
