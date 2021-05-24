@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import cybersoft.java11.crm.utils.UrlConst;
 
 @WebFilter(urlPatterns= {
-		"/*"
+		UrlConst.ROOT
 })
 public class AuthFilter implements Filter {
 
@@ -27,9 +27,9 @@ public class AuthFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) response;
 		
 		HttpSession session = req.getSession();
-//		String userId = (String) session.getAttribute("userId");
-		String userId = String.valueOf(session.getAttribute("userId")).toString();
-		
+	String userId = (String) session.getAttribute("userId");
+		//String userId = String.valueOf(session.getAttribute("userId")).toString();
+		//String userId = (String)session.getAttribute("userId");
 		if(userId != null) {
 			chain.doFilter(request, response);
 		} else {
