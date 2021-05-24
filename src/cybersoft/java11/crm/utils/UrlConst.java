@@ -7,7 +7,6 @@ public class UrlConst {
 	public static final String AUTH_LOGOUT = "/logout";
 	public static final String AUTH_FORGOT_PASSWORD = "/forgot-password";
 	public static final String AUTH_REGISTER = "/register";
-	
 	//HOME
 	public static final String HOME_ROOT = "/";
 	public static final String HOME = "/home";

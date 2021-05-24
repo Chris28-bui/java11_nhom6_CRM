@@ -27,7 +27,7 @@ public class AuthFilter implements Filter {
 		HttpSession session = req.getSession();
 //		String userId = (String) session.getAttribute("userId");
 		String userId = String.valueOf(session.getAttribute("userId")).toString();
-		System.out.println(userId);
+//		System.out.println(userId);
 		
 		if(userId != null) {
 			chain.doFilter(request, response);
@@ -35,7 +35,7 @@ public class AuthFilter implements Filter {
 			if(req.getServletPath().equals(UrlConst.AUTH_LOGIN) || req.getServletPath().startsWith("/assets/"))
 				chain.doFilter(request, response);
 			else {
-				System.out.println("from elseAuthFilter");
+//				System.out.println("from elseAuthFilter");
 				resp.sendRedirect(req.getContextPath() + UrlConst.AUTH_LOGIN);
 			}
 				
