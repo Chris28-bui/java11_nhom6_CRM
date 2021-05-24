@@ -164,7 +164,6 @@ public class UserDao {
 			statement.setString(1, user.getFullname());
 			statement.setString(2, user.getPassword());
 			statement.setString(3, user.getEmail());
-			
 			statement.setString(4, user.getAddress());
 			statement.setString(5, user.getPhone());
 			statement.setInt(6, user.getRole().getId());
