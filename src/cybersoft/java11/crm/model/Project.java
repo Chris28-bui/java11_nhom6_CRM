@@ -59,8 +59,8 @@ public class Project {
 		return start_date;
 	}
 
-	public void setStart_date(Date start_date) {
-		this.start_date = start_date;
+	public void setStart_date(Date startDate) {
+		this.start_date = startDate;
 	}
 
 	public Date getEnd_date() {

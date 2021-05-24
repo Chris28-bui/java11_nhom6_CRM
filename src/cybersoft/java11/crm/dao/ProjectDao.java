@@ -41,8 +41,7 @@ public class ProjectDao {
 				newProject.setDescription(results.getString("description"));
 				newProject.setStart_date(results.getDate("start_date"));
 				newProject.setEnd_date(results.getDate("end_date"));
-//				newProject.setCreate_user_id(results.getInt("create_user_id"));
-				newProject.setCreate_user_id(null);
+				newProject.setCreate_user_id(userDao.findById(results.getInt("create_user_id")));
 				
 				listProject.add(newProject);
 			}
@@ -55,7 +54,7 @@ public class ProjectDao {
 	
 	public Project findByID(int id) {
 		Connection connection = _dbConnection.getConnection();
-		Project project = null;
+		Project newProject = new Project();
 		
 		try {
 			String query = "select id, name, description, start_date, end_date, create_user_id from project where id = ?";
@@ -66,14 +65,12 @@ public class ProjectDao {
 			ResultSet result = statement.executeQuery();
 			
 			while(result.next()) {
-				Project newProject = new Project();
 				newProject.setId(result.getInt("id"));
 				newProject.setName(result.getString("name"));
 				newProject.setDescription(result.getString("description"));
 				newProject.setStart_date(result.getDate("start_date"));
 				newProject.setEnd_date(result.getDate("end_date"));
-//				newProject.setCreate_user_id(userDao.findByID(result.getInt("id")));
-				newProject.setCreate_user_id(null);
+				newProject.setCreate_user_id(userDao.findById(result.getInt("create_user_id")));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -85,23 +82,22 @@ public class ProjectDao {
 				e.printStackTrace();
 			}
 		}
-		return project;
+		return newProject;
 	}
 	
 	public int add(Project project) {
 		int result = -1;
 		
 		Connection connection = _dbConnection.getConnection();
-		String query = "insert into project values (?, ?, ?, ?, ?, ?)";
+		String query = "insert project(`name`, `description`, `start_date`, `end_date`, `create_user_id`) values (?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
-			statement.setInt(1, project.getId());
-			statement.setString(2, project.getName());
-			statement.setString(3, project.getDescription());
-			statement.setDate(4, project.getStart_date());
-			statement.setDate(5, project.getEnd_date());
-			statement.setInt(6, project.getCreate_user_id().getId());
+			statement.setString(1, project.getName());
+			statement.setString(2, project.getDescription());
+			statement.setDate(3, project.getStart_date());
+			statement.setDate(4, project.getEnd_date());
+			statement.setInt(5, project.getCreate_user_id().getId());
 			
 			result = statement.executeUpdate();
 		} catch(SQLException e) {
@@ -121,7 +117,7 @@ public class ProjectDao {
 		int result = -1;
 		
 		Connection connection = _dbConnection.getConnection();
-		String query = "delete from project from id=?";
+		String query = "delete from project where id=?";
 		
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);

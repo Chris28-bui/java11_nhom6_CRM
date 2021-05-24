@@ -17,6 +17,8 @@ public class JspPathConst {
 	
 	//TASK
 	public static final String TASK_DASHBOARD = "/WEB-INF/views/task/index.jsp";
+	public static final String TASK_ADD = "/WEB-INF/views/task/task-add.jsp";
+	public static final String TASK_UPDATE = "/WEB-INF/views/task/task-update.jsp";
 	
 	//PROJECT
 	public static final String PROJECT_DASHBOARD = "/WEB-INF/views/project/index.jsp";

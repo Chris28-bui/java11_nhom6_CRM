@@ -42,7 +42,6 @@ public class Roleservlet extends HttpServlet {
 			case UrlConst.ROLE_DASHBOARD:	
 				req.setAttribute("roleId", session.getAttribute("userRole"));
 				List<Role> listRole = biz.findAll();
-				HttpSession curSession = req.getSession();
 				req.setAttribute("roles", listRole);
 
 				req.getRequestDispatcher(JspPathConst.ROLE_DASHBOARD).forward(req, resp);

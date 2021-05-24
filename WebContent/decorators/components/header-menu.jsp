@@ -21,12 +21,12 @@
                             Project
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="<c:url value="<%=UrlConst.PROJECT_DASHBOARD %>"/>">
                                 Manage Project
                             </a>
-                            <a class="dropdown-item" href="#">
+                            <%-- <a class="dropdown-item" href="<c:url value="<%=UrlConst.PROJECT_ADD %>"/>">
                                 Project Create Project
-                            </a>
+                            </a> --%>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -43,7 +43,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Task</a>
+                        <a class="nav-link" href="<c:url value="<%=UrlConst.TASK_DASHBOARD %>"/>">Task</a>
                     </li>
                 </ul>
             </div>
