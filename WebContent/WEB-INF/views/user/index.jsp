@@ -19,8 +19,16 @@
                 <h1 class="m-0">User Dashboard</h1>
             </div>
             <div class="ml-auto">
-                <a href="<c:url value="<%=UrlConst.USER_ADD %>" />" class="btn btn-light"><i class="material-icons icon-16pt text-muted mr-1">add</i>
+                <c:choose>
+                	<c:when test="${roleId.name=='leader' || roleId.name=='manager'}">
+                		<a href="<c:url value="<%=UrlConst.USER_ADD %>" />" class="btn btn-light"><i class="material-icons icon-16pt text-muted mr-1">add</i>
     Add</a>
+                	</c:when>
+                	<c:otherwise>
+                		<a href="#" class="btn btn-light"><i class="material-icons icon-16pt text-muted mr-1">add</i>
+    Add</a>
+                	</c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>
@@ -41,13 +49,13 @@
 					<th class="col-2">
 						Address
 					</th>
-					<th class="col-2">
+					<th class="col-1">
 						Phone
 					</th>
 					<th class="col-2">
 						Role
 					</th>
-					<th class="col-2">
+					<th class="col-3">
 						Action
 					</th>
 				</tr>
@@ -65,18 +73,21 @@
 						<td class="col-2">
 							${user.address}
 						</td>
-						<td class="col-2">
+						<td class="col-1">
 							${user.phone}
 						</td>
 						<td class="col-2">
 							${user.role.name}
 						</td>
-						<td class="col-2 button-list d-flex flex-wrap">
+						<td class="col-3 button-list d-flex flex-wrap">
 							<a href="<c:url value="<%=UrlConst.USER_UPDATE %>" />?id=${user.id}" class="btn btn-primary">
 	                            <i class="material-icons">edit</i>
 	                        </a>
 	                        <a href="<c:url value="<%=UrlConst.USER_DELETE %>" />?id=${user.id}" class="btn btn-danger">
 	                            <i class="material-icons">delete_forever</i>
+	                        </a>
+	                        <a href="<c:url value="<%=UrlConst.TASK_DASHBOARD %>"/>?id=${user.id}" class="btn btn-success">
+	                        	<i class="material-icons material-icons-outlined">assignment</i>
 	                        </a>
 	                        <%-- <c:choose>
 	                        	<c:when test="${roleId.id == 1 }">

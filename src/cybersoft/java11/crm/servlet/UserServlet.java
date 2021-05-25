@@ -43,8 +43,9 @@ public class UserServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		switch (servletPath) {
 		case UrlConst.USER_DASHBOARD:
-			
 			String userId=req.getParameter("id");
+			req.setAttribute("roleId", session.getAttribute("userRole"));	
+			System.out.println("userRole: " + session.getAttribute("userRole"));
 			if(userId!=null) {
 				List<User> listUser=userbiz.findByRoleId(Integer.parseInt(userId));
 				req.setAttribute("users", listUser);
@@ -57,7 +58,7 @@ public class UserServlet extends HttpServlet {
 			req.getRequestDispatcher(JspPathConst.USER_DASHBOARD).forward(req, resp);
 			break;
 		case UrlConst.USER_ADD:
-			req.setAttribute("roleId", session.getAttribute("userRole"));
+			req.setAttribute("roleId", session.getAttribute("userId"));
 			List<Role> listRole = rolebiz.findAll();
 			HttpSession curSession = req.getSession();
 			req.setAttribute("roles", listRole);
