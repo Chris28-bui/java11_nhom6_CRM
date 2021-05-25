@@ -42,11 +42,11 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.16</version>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.16</version>
-		</dependency> -->
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/opensymphony/sitemesh -->
 		<dependency>
 			<groupId>opensymphony</groupId>
